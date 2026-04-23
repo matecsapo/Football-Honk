@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "football-honk"
-version = "0.4.0"
+version = "0.6.0"
 description = "Football-Honk Football/Soocer Prediction Modelling and Projections"
 readme = "README.md"
 authors = [{name = "Mate Csapo"}]
@@ -19,6 +19,11 @@ dependencies = [
 [tool.setuptools.packages.find]
 where = ["source"]
 include = ["honk*"]
+
+[tool.poetry]
+packages = [
+    { include = "honk", from = "source" }
+]
 
 [tool.setuptools.package-data]
 "honk" = ["projections/**/*", "models/**/*"]
