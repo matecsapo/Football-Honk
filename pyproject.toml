@@ -10,6 +10,7 @@ version = "0.1.0"
 description = "Football-Honk Football/Soocer Prediction Modelling and Projections"
 readme = "README.md"
 authors = [{name = "Mate Csapo"}]
+requires-python = ">=3.10"
 dependencies = [
     "football-goose @ git+https://github.com/matecsapo/Football-Goose.git",
     "streamlit"
