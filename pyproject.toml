@@ -6,11 +6,10 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "football-honk"
-version = "0.3.0"
+version = "0.4.0"
 description = "Football-Honk Football/Soocer Prediction Modelling and Projections"
 readme = "README.md"
 authors = [{name = "Mate Csapo"}]
-requires-python = ">=3.10,<3.13"
 dependencies = [
     "football-goose @ git+https://github.com/matecsapo/Football-Goose.git",
     "streamlit"
