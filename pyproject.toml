@@ -1,0 +1,23 @@
+# football-honk
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "football-honk"
+version = "0.1.0"
+description = "Football-Honk Football/Soocer Prediction Modelling and Projections"
+readme = "README.md"
+authors = [{name = "Mate Csapo"}]
+dependencies = [
+    "football-goose @ git+https://github.com/matecsapo/Football-Goose.git",
+    "streamlit"
+]
+
+[tool.setuptools.packages.find]
+where = ["source"]
+include = ["honk*"]
+
+[tool.setuptools.package-data]
+"honk" = ["projections/**/*", "models/**/*"]
