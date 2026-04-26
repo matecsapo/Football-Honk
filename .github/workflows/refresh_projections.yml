@@ -31,7 +31,7 @@ jobs:
       - name: Refresh Projections
         working-directory: ./source
         run: |
-          goose project GER-Bundesliga "GER-Bundesliga_sprm"
+          goose refresh automated-git-workflow
 
       - name: Commit and Push Changes
         run: |
