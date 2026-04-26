@@ -28,10 +28,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install .
 
-      # - name: Refresh Projections
-        # working-directory: ./source
-        # run: |
-          # goose refresh automated-git-workflow
+      - name: Refresh Projections
+        working-directory: ./source
+        run: |
+          goose project GER-Bundesliga "GER-Bundesliga_sprm"
 
       - name: Commit and Push Changes
         run: |
