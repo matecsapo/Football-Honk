@@ -1,6 +1,5 @@
 # for defining an operation for building projections
 from goose.operation.built_in_operations.goose_operations import goose_operations
-from goose.operation.built_in_operations.utilities import load_model
 from goose.operation.built_in_operations.forecast_operations import expectation, monte_carlo
 from goose.operation.built_in_operations.prediction_operations import predict_remaining
 from goose.name_standardization import standardize_league_name

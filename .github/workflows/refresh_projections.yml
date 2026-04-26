@@ -1,4 +1,4 @@
-name: Daily Projection Refresh
+name: Automated Modelling Refresh
 
 on:
   schedule:
@@ -26,7 +26,7 @@ jobs:
       - name: Refresh Projections
         working-directory: ./source
         run: |
-          goose refresh all
+          goose refresh automated-git-workflow
 
       - name: Commit and Push Changes
         run: |

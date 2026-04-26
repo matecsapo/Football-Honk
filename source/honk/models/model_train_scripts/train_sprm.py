@@ -4,7 +4,7 @@ from honk.models.model_train_scripts.train_scripts import model_train_operations
 # for training sprm models
 from goose.name_standardization import standardize_league_name
 from honk.models.model_definitions.static_reg_poi_model import Static_Poi_Reg_Model
-from goose.data import Results_Data
+from goose.data.pull_data import Results_Data
 from datetime import datetime
 from pathlib import Path
 

@@ -2,7 +2,8 @@
 from goose.model import Model
 
 # For data manipulation
-from goose.data import Results_Data, Game, Games, Game_Prediction
+from goose.data.goose_data_structures import Game, Game_Prediction
+from goose.data.pull_data import Results_Data
 import numpy as np
 import pandas as pd
 import json as json
