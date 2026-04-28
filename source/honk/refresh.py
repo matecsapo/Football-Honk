@@ -36,34 +36,14 @@ def refresh_all():
     for league in modelled_leagues:
         refresh_league(league)
 
-# scheduled + automated refresh of all Football-Honk modelled
-# publicizes updated modelling via git commit + pushing changes
-@refresh_operations.operation("automated-git-workflow", "refresh operation invoked by automated git workflow")
+# operation for running scheduled + automated refresh of all Football-Honk modeling
+# uses standings-via-understats-reconstruction as opposed to default of ESPN
+    # since ESPN can sometimes block automated scrapers
+@refresh_operations.operation("automated-refresh", "refresh operation invoked by automated git workflow")
 def refresh_automated():
-    import soccerdata as sd
-    from goose.data.pull_data import Standings_Data
-    from goose.data.goose_data_structures import League_Table
-    import pandas as pd
-    def standings_via_US_reconstruction(self, league, season) -> League_Table:
-        us = sd.Understat(league, season, proxy=None, no_cache=False, no_store=False)
-        data = us.read_team_match_stats()
-        home = data[['home_team', 'home_points', 'home_goals', 'away_goals']].rename(
-            columns={'home_team': 'Team', 'home_points': 'Pts', 'home_goals': 'GF', 'away_goals': 'GA'}
-        )
-        away = data[['away_team', 'away_points', 'away_goals', 'home_goals']].rename(
-            columns={'away_team': 'Team', 'away_points': 'Pts', 'away_goals': 'GF', 'home_goals': 'GA'}
-        )
-        table = pd.concat([home, away]).groupby('Team').agg(
-            MP=('Pts', 'count'),
-            Pts=('Pts', 'sum'),
-            GF=('GF', 'sum'),
-            GA=('GA', 'sum')
-        ).reset_index()
-        table['GD'] = table['GF'] - table['GA']
-        standings = table[['Team', 'MP', 'Pts', 'GD']].sort_values(
-            by=['Pts', 'GD'], ascending=False
-        ).reset_index(drop=True)
-        standings = League_Table(standings)
-        return standings
-    Standings_Data.set_source(standings_via_US_reconstruction)
+    # set alternative standings retrieval source
+    from goose.data.built_in_data_types.standings_data import standings_data
+    standings_data.Set_Source("Understats(Reconstruction)")
+    print("Standings data source set to : Understats(Reconstruction)")
+    # run full refresh of all modelling
     refresh_all()

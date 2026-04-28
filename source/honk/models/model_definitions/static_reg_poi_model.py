@@ -3,7 +3,7 @@ from goose.model import Model
 
 # For data manipulation
 from goose.data.goose_data_structures import Game, Game_Prediction
-from goose.data.pull_data import Results_Data
+from goose.data.built_in_data_types.results_data import results_data
 import numpy as np
 import pandas as pd
 import json as json
@@ -40,7 +40,7 @@ class Static_Poi_Reg_Model(Model):
         self.Model_Evals = None # pd dataframe containing evaluation statistics of model
 
     # Add data for model training/testing
-    def Add_Data(self, data : Results_Data):
+    def Add_Data(self, data):
         self.Data = data
 
     # Processes train+/test data into:
@@ -49,7 +49,7 @@ class Static_Poi_Reg_Model(Model):
     def Process_Data(self):
         # columns to keep for this model
         cols = ["date", "home_team", "away_team", "home_xg", "away_xg"]
-        self.Processed_Data = self.Data.data[cols].reset_index(drop=True)
+        self.Processed_Data = self.Data[cols].reset_index(drop=True)
         # Convert date column to datetime objects
         self.Processed_Data["date"] = pd.to_datetime(self.Processed_Data["date"])
         # Duplicate each game = datapoint from each team's perspective

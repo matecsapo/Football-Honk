@@ -34,7 +34,7 @@ jobs:
       - name: Refresh Projections
         working-directory: ./source
         run: |
-          goose refresh automated-git-workflow
+          goose refresh automated-refresh
 
       - name: Commit and Push Changes
         run: |

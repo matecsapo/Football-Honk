@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "football-honk"
-version = "1.1.7"
+version = "1.1.8"
 description = "Football-Honk Football/Soocer Prediction Modelling and Projections"
 readme = "README.md"
 authors = [{name = "Mate Csapo"}]
