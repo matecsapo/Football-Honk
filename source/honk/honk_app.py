@@ -125,15 +125,15 @@ if sel_league:
 
         if standings is not None:
             mc_odds = ['Title', 'CL', 'EL', 'UECL', 'Relegation']
-            metrics = ['xG', 'Pts', 'Avg Position']
+            metrics = ['xPts', 'Avg Position', 'xGD']
             cols = ['Team'] + [c for c in mc_odds + metrics if c in standings.columns]
             
             st_df = standings[cols].style.format({
                 **{c: "{:.1%}" for c in mc_odds}, 
-                'Pts': '{:.1f}', 'xG': '{:.2f}', 'Avg Position': '{:.1f}'
+                'xPts': '{:.1f}', 'xGD': '{:.2f}', 'Avg Position': '{:.1f}'
             }, na_rep="-")
             
-            for c, cmap in [('Title','Greens'), ('Pts','Greens'), ('Avg Position','Greens_r'), ('Relegation','Reds')]:
+            for c, cmap in [('Title','Greens'), ('xPts','Greens'), ('Avg Position','Greens_r'), ('Relegation','Reds')]:
                 if c in cols: st_df = st_df.background_gradient(subset=[c], cmap=cmap)
             
             st.dataframe(st_df, use_container_width=True, hide_index=True, height=750)
