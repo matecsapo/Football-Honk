@@ -22,7 +22,7 @@ fonttools==4.62.1
 football-goose @ file:///Users/matecsapo/Programming%20Projects/Football-Goose
 football-honk @ file:///Users/matecsapo/Programming%20Projects/Football-Honk
 gitdb==4.0.12
-GitPython==3.1.47
+GitPython==3.1.48
 h11==0.16.0
 html5lib==1.1
 idna==3.13
@@ -43,7 +43,7 @@ narwhals==2.20.0
 numpy==2.4.4
 orjson==3.11.8
 outcome==1.3.0.post0
-packaging==26.1
+packaging==26.2
 pandas==3.0.2
 pandera==0.31.1
 parameterized==0.9.0
@@ -80,7 +80,7 @@ sbvirtualdisplay==1.4.0
 scikit-learn==1.8.0
 scipy==1.17.1
 selenium==4.43.0
-seleniumbase==4.48.2
+seleniumbase==4.48.3
 setuptools==82.0.1
 shellingham==1.5.4
 six==1.17.0
@@ -91,7 +91,7 @@ sortedcontainers==2.4.0
 soupsieve==2.8.3
 statsmodels==0.14.6
 streamlit==1.56.0
-tabcompleter==1.4.0
+tabcompleter==1.4.1
 tenacity==9.1.4
 threadpoolctl==3.6.0
 toml==0.10.2
@@ -100,7 +100,7 @@ tqdm==4.67.3
 trio==0.33.0
 trio-websocket==0.12.2
 typeguard==4.5.1
-typer==0.24.2
+typer==0.25.0
 typing-inspect==0.9.0
 typing-inspection==0.4.2
 typing_extensions==4.15.0

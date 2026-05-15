@@ -2,8 +2,7 @@
 from goose.model import Model
 
 # For data manipulation
-from goose.data.goose_data_structures import Game, Game_Prediction
-from goose.data.built_in_data_types.results_data import results_data
+from goose.data.goose_data_structures import Game, Game_Prediction, Team
 import numpy as np
 import pandas as pd
 import json as json
@@ -122,7 +121,8 @@ class Static_Poi_Reg_Model(Model):
         self.Model.save(folder / "smfmodel.pkl")
         # json Model_Paramaters dump
         with open(folder / "parameters.json", "w") as f:
-            json.dump(self.Model_Parameters, f, indent=4)
+            data = {str(k): v for k, v in self.Model_Parameters.items()}
+            json.dump(data, f, indent=4)
         # model evaluation statistics
         with open(folder / "eval_statistics.json", "w") as f:
             json.dump(self.Model_Evals, f, indent=4)
@@ -136,7 +136,7 @@ class Static_Poi_Reg_Model(Model):
         model.Model = sm.load(model_save_path / "smfmodel.pkl")
         # load parameters
         with open(model_save_path / "parameters.json", "r") as f:
-            model.Model_Parameters = json.load(f)
+            model.Model_Parameters = {Team(k) if k not in ["Intercept", "h_a_factor"] else k: v for k, v in json.load(f).items()}
         # return loaded model
         return model
 

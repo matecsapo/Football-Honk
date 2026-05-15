@@ -1,9 +1,8 @@
 # for defining an operations folder for storing refresh operations
 from goose.operation.built_in_operations.goose_operations import goose_operations
-from goose.name_standardization import standardize_league_name
+from goose.data.goose_data_structures import League
 
 # for training models and building projections
-from honk.models.model_train_scripts.train_sprm import train_sprm
 from honk.projections.projection_build_scripts.projection import project
 
 # for building projections according to Football-Honk's config
@@ -19,8 +18,9 @@ refresh_operations = goose_operations.create_subfolder("refresh", "refresh model
 # goose refresh league [league]
 @refresh_operations.operation("league", "refresh modelling for specified league")
 def refresh_league(league : str):
-    league = standardize_league_name(league)
-    print(f"Refreshing {league} modelling and projections...")
+    if isinstance(league, str):
+        league = League(league)
+    print(f"Refreshing {league.league} modelling and projections...")
     # determine league's corresponding flagship Football-Honk model
     model_name, train_function = flagship_models[league]
     # refresh (train) sprm model

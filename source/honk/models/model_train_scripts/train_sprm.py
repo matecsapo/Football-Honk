@@ -2,7 +2,7 @@
 from honk.models.model_train_scripts.train_scripts import model_train_operations
 
 # for training sprm models
-from goose.name_standardization import standardize_league_name
+from goose.data.goose_data_structures import League
 from honk.models.model_definitions.static_reg_poi_model import Static_Poi_Reg_Model
 from goose.data.built_in_data_types.results_data import results_data
 from datetime import datetime
@@ -13,9 +13,10 @@ from pathlib import Path
 @model_train_operations.operation("sprm", "train sprm model for specified league")
 def train_sprm(league : str):
     # standardize league name
-    league = standardize_league_name(league)
+    if isinstance(league, str):
+        league = League(league)
     # build model for specified league based on most recent data
-    model_name = league + "_sprm"
+    model_name = league.league + "_sprm"
     print(f"Training {model_name}...")
     model = Static_Poi_Reg_Model(model_name)
     model.Add_Data(results_data.Retrieve(league, "2025/2026"))
