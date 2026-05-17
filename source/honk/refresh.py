@@ -33,8 +33,9 @@ def refresh_league(league : str):
 @refresh_operations.operation("all", "refresh modelling for all supported leagues")
 def refresh_all():
     print(f"Refreshing all modelling and projections...")
-    for league in modelled_leagues:
-        refresh_league(league)
+    for (league, status) in modelled_leagues:
+        if status == True:
+            refresh_league(league)
 
 # operation for running scheduled + automated refresh of all Football-Honk modeling
 # uses standings-via-understats-reconstruction as opposed to default of ESPN
