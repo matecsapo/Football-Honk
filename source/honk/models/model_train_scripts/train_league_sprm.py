@@ -2,16 +2,16 @@
 from honk.models.model_train_scripts.train_scripts import model_train_operations
 
 # for training sprm models
-from goose.data.goose_data_structures import League
+from goose.data.goose_data_structures.identifiers import League
 from honk.models.model_definitions.static_reg_poi_model import Static_Poi_Reg_Model
 from goose.data.built_in_data_types.results_data import results_data
 from datetime import datetime
 from pathlib import Path
 
-# operation for training sprm model for specified league
-# goose train sprm [league]
-@model_train_operations.operation("sprm", "train sprm model for specified league")
-def train_sprm(league : str):
+# operation for training sprm model for specified league-style competition
+# goose train league-sprm [league]
+@model_train_operations.operation("league-sprm", "train sprm model for specified league")
+def train_league_sprm(league : str):
     # standardize league name
     if isinstance(league, str):
         league = League(league)
@@ -19,7 +19,7 @@ def train_sprm(league : str):
     model_name = league.league + "_sprm"
     print(f"Training {model_name}...")
     model = Static_Poi_Reg_Model(model_name)
-    model.Add_Data(results_data.Retrieve(league, "2025/2026"))
+    model.Add_Data(results_data.Retrieve(league, "2026/2027"))
     model.Process_Data()
     model.Split_Train_Test(datetime.now())
     model.Train_Model()

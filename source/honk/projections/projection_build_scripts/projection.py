@@ -2,7 +2,7 @@
 from goose.operation.built_in_operations.goose_operations import goose_operations
 from goose.operation.built_in_operations.forecast_operations import expectation, monte_carlo
 from goose.operation.built_in_operations.prediction_operations import predict_remaining
-from goose.data.goose_data_structures import League
+from goose.data.goose_data_structures.identifiers import League
 from pathlib import Path
 import json
 from datetime import datetime

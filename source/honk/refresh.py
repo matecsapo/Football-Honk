@@ -1,6 +1,6 @@
 # for defining an operations folder for storing refresh operations
 from goose.operation.built_in_operations.goose_operations import goose_operations
-from goose.data.goose_data_structures import League
+from goose.data.goose_data_structures.identifiers import League
 
 # for training models and building projections
 from honk.projections.projection_build_scripts.projection import project
