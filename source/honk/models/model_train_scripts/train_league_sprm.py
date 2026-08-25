@@ -19,7 +19,7 @@ def train_league_sprm(league : str):
     model_name = league.league + "_sprm"
     print(f"Training {model_name}...")
     model = Static_Poi_Reg_Model(model_name)
-    model.Add_Data(results_data.Retrieve(league, "2026/2027"))
+    model.Add_Data(results_data.Retrieve(league, 2026))
     model.Process_Data()
     model.Split_Train_Test(datetime.now())
     model.Train_Model()
