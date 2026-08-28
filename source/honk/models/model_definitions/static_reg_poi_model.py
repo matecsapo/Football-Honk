@@ -3,7 +3,7 @@ from goose.model import Model
 
 # For data manipulation
 from goose.data.goose_data_structures.identifiers import Team
-from goose.data.goose_data_structures.game_storage import Game, Game_Prediction
+from goose.data.goose_data_structures.game_storage import Game, Game_Simulation, Games, Game_Prediction
 import numpy as np
 import pandas as pd
 import json as json
@@ -31,7 +31,7 @@ from scipy.stats import poisson, skellam
 class Static_Poi_Reg_Model(Model):
     def __init__(self, model_name):
         self.Model_Name = model_name
-        self.Data = None # Results_Data object
+        self.Data : Games = None # Games object
         self.Processed_Data = None # Regular pd dataframe
         self.Train_Data = None # Regular pd dataframe
         self.Test_Data = None # Regular pd dataframe
@@ -49,7 +49,8 @@ class Static_Poi_Reg_Model(Model):
     def Process_Data(self):
         # columns to keep for this model
         cols = ["date", "home_team", "away_team", "home_xg", "away_xg"]
-        self.Processed_Data = self.Data[cols].reset_index(drop=True)
+        self.Processed_Data = self.Data.to_dataframe()
+        self.Processed_Data = self.Processed_Data[cols].reset_index(drop=True)
         # Convert date column to datetime objects
         self.Processed_Data["date"] = pd.to_datetime(self.Processed_Data["date"])
         # Duplicate each game = datapoint from each team's perspective
@@ -166,8 +167,8 @@ class Static_Poi_Reg_Model(Model):
         # Obtain game prediction
         game_prediction = self.Predict_Game(game)
         # Random-simulate home goals
-        home_goals = poisson.rvs(game_prediction.home_xg)
+        home_goals = poisson.rvs(game_prediction.home_pred_goals)
         # Random-simulate away goals
-        away_goals = poisson.rvs(game_prediction.away_xg)
+        away_goals = poisson.rvs(game_prediction.away_pred_goals)
         # Return [home, away] score
-        return home_goals, away_goals
+        return Game_Simulation(game, home_goals, away_goals)
