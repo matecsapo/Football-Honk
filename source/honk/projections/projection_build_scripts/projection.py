@@ -14,8 +14,8 @@ def project(league : str, model_name : str):
     # standardize league name
     if isinstance(league, str):
         league = League(league)
-    # folder for storing produced projections in honk/projections/[league]
-    folder = Path(__file__).parent.parent / league.league
+    # folder for storing produced projections in honk/live/projections/[league]
+    folder = Path(__file__).parent.parent.parent / "live/projections" / league.league
     # build forecasts for (league, model)
     expectation(league, model_name, save = folder)
     print()

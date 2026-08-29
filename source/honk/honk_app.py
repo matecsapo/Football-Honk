@@ -54,7 +54,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-PROJECTIONS_DIR = Path(__file__).parent / "projections"
+PROJECTIONS_DIR = Path(__file__).parent / "live/projections"
 
 # --- DATA HELPERS ---
 def get_projection_timestamp(league):
@@ -169,7 +169,7 @@ if sel_league:
                         <div class="match-strip">
                             <div class="team-block">
                                 <span class="loc-tag">Home</span><span class="team-name">{row['home_team']}</span>
-                                <div class="xg-id-label">Project/xG</div><div class="xg-value">{row['home_xg']:.2f}</div>
+                                <div class="xg-id-label">Project/xG</div><div class="xg-value">{row['home_pred_goals']:.2f}</div>
                             </div>
                             <div class="date-block">
                                 <span class="date-sub">{row['date'].strftime('%b %d')}</span>
@@ -177,13 +177,13 @@ if sel_league:
                             </div>
                             <div class="team-block team-right">
                                 <span class="loc-tag">Away</span><span class="team-name">{row['away_team']}</span>
-                                <div class="xg-id-label">Project/xG</div><div class="xg-value">{row['away_xg']:.2f}</div>
+                                <div class="xg-id-label">Project/xG</div><div class="xg-value">{row['away_pred_goals']:.2f}</div>
                             </div>
                         </div>
                         <div class="prob-bar-container">
-                            <div style="width: {row['p_home']*100}%; background: #2e7d32;"></div>
-                            <div style="width: {row['p_draw']*100}%; background: #757575;"></div>
-                            <div style="width: {row['p_away']*100}%; background: #d32f2f;"></div>
+                            <div style="width: {row['prob_home_win']*100}%; background: #2e7d32;"></div>
+                            <div style="width: {row['prob_draw']*100}%; background: #757575;"></div>
+                            <div style="width: {row['prob_away_win']*100}%; background: #d32f2f;"></div>
                         </div>
                     """, unsafe_allow_html=True)
-                    st.caption(f"{row['home_team']}: {row['p_home']:.0%} | Draw: {row['p_draw']:.0%} | {row['away_team']}: {row['p_away']:.0%}")
+                    st.caption(f"{row['home_team']}: {row['prob_home_win']:.0%} | Draw: {row['prob_draw']:.0%} | {row['away_team']}: {row['prob_away_win']:.0%}")

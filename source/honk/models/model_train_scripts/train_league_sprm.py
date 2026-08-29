@@ -23,6 +23,6 @@ def train_league_sprm(league : str):
     model.Process_Data()
     model.Split_Train_Test(datetime.now())
     model.Train_Model()
-    # save model to honk/models/active_models/
-    model.save_model_fgm(Path(__file__).parent.parent)
+    # save model to honk/live/models/
+    model.save_model_fgm(Path(__file__).parent.parent.parent / "live/models")
     print(f"Trained and saved {model_name}")
