@@ -1,17 +1,20 @@
-from goose.data.goose_data_structures.identifiers import League
+from goose.data.goose_data_structures.identifiers import League, Season
+
+# current Season
+current_season = Season(2026)
 
 # list of leagues currently modelled + project by Football-Honk
 # list of (league, active/inactive status)
 modelled_leagues = [
         (League("ENG-Premier League"), True),
         (League("ESP-La Liga"), True),
-        (League("GER-Bundesliga"), False),
+        (League("GER-Bundesliga"), True),
         (League("ITA-Serie A"), True),
         (League("FRA-Ligue 1"), True)
     ]
 
 # defines league --> (flagship model, model train operation) used for producing league's publicizied Football-Honk projections
-from honk.models.model_train_scripts.train_league_sprm import train_league_sprm
+from honk.models.static_poi_reg.train_league_sprm import train_league_sprm
 flagship_models = {
     League("ENG-Premier League") : ("ENG-Premier League_sprm", train_league_sprm),
     League("ESP-La Liga") : ("ESP-La Liga_sprm", train_league_sprm),

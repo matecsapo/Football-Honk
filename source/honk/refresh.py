@@ -3,7 +3,7 @@ from goose.operation.built_in_operations.goose_operations import goose_operation
 from goose.data.goose_data_structures.identifiers import League
 
 # for training models and building projections
-from honk.projections.projection_build_scripts.projection import project
+from honk.projection_build_scripts.projection import project
 
 # for building projections according to Football-Honk's config
 from honk.config import modelled_leagues, flagship_models

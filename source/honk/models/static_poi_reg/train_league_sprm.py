@@ -1,9 +1,9 @@
 # for defining a model training operation
-from honk.models.model_train_scripts.train_scripts import model_train_operations
+from honk.models.train_scripts import model_train_operations
 
 # for training sprm models
 from goose.data.goose_data_structures.identifiers import League, Season
-from honk.models.model_definitions.static_reg_poi_model import Static_Poi_Reg_Model
+from honk.models.static_poi_reg.static_reg_poi_model import Static_Poi_Reg_Model
 from goose.data.built_in_data_types.results_data import results_data
 from datetime import datetime
 from pathlib import Path

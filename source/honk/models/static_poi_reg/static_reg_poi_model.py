@@ -30,7 +30,7 @@ from scipy.stats import poisson, skellam
 @Model.define_model("Static Poisson Regression Model")
 class Static_Poi_Reg_Model(Model):
     def __init__(self, model_name):
-        self.Model_Name = model_name
+        self.model_name = model_name
         self.Data : Games = None # Games object
         self.Processed_Data = None # Regular pd dataframe
         self.Train_Data = None # Regular pd dataframe
