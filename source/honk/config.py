@@ -8,7 +8,7 @@ current_season = Season(2026)
 modelled_leagues = [
         (League("ENG-Premier League"), True),
         (League("ESP-La Liga"), True),
-        (League("GER-Bundesliga"), True),
+        (League("GER-Bundesliga"), False),
         (League("ITA-Serie A"), True),
         (League("FRA-Ligue 1"), True)
     ]
