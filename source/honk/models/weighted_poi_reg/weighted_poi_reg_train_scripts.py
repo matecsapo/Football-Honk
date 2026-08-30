@@ -1,6 +1,9 @@
 # for defining a model training operation
 from honk.models.train_scripts import model_train_operations
 
+# for loading models
+from goose.operation.built_in_operations.utilities import load_model
+
 # for training weighted poisson regression models
 from goose.data.goose_data_structures.identifiers import League, Season
 from goose.data.goose_data_structures.game_storage import Games
@@ -15,9 +18,9 @@ from honk.config import current_season
 # operation for base fitting weighted_poi_reg model on last 10 games of previous season
     # The last 10 games of the previous season are used
     # only games involving teams present in current season are fitted on
-# goose train league-wprm [league]
+# goose train league-basefit-wprm [league]
 @model_train_operations.operation("league-basefit-wprm", "base fit weighted poisson regression model for specified league on previous season data")
-def train_league_sprm(league : str):
+def train_league_wprm(league : str):
     # standardize league name
     if isinstance(league, str):
         league = League(league)
@@ -37,3 +40,22 @@ def train_league_sprm(league : str):
     # save model to current directory
     model.save_model_fgm("")
     print(f"Trained and saved {model_name}")
+
+# operation for updating existing league-specific weighted_poi_reg model given freshest
+# goose train league-update-wprm [league]
+@model_train_operations.operation("league-update-wprm", "update existing league-specific wprm model with freshet games")
+def update_league_wprm(league : str):
+    # standardize league name
+    if isinstance(league, str):
+        league = League(league)
+    # load league-specific wprm model
+    model_name = league.league + "_wprm"
+    model, model_name = load_model(model_name)
+    # Grab most recent match-time of data present in model
+    existing_games = model.fit_games
+    most_recent_match_time = existing_games.to_dataframe()["date"].max()
+    # Grab fresh games
+    new_games : Games = results_data.Retrieve(league, current_season)
+    new_games = new_games.Filter(lambda x : x.date > most_recent_match_time)
+    # Update model
+    model.Update(new_games)
