@@ -73,7 +73,7 @@ class Weighted_Poi_Reg_Model(Model):
         # 1. intercept
         self.model_parameters["Intercept"] = params["Intercept"]
         # 2. (all) Team att and def values
-        for team in sorted(data['team'].unique()):
+        for team in sorted(self.fit_games.Teams_Involved()):
             self.model_parameters[team] = {"att" : params.get(f"team[T.{team}]", 1), # naming structure employed by smf
                                                 "def" : params.get(f"opponent[T.{team}]", 1)} # " "
         # 3. h/a_factor
@@ -106,6 +106,21 @@ class Weighted_Poi_Reg_Model(Model):
         days_ago = (current_datetime - data["date"]).dt.days.astype(int)
         weights = 0.5 ** (days_ago / self.weight_decay_halflife_days)
         return weights
+
+    # Imputes (new) team's (att, def) parameters as median of existing teams
+    def impute_team_as_median(self, team : Team):
+        existing_teams  = self.fit_games.Teams_Involved()
+        # Extract all attack and defense parameters for existing teams
+        att_values = [self.model_parameters[t]["att"] for t in existing_teams if t in self.model_parameters]
+        def_values = [self.model_parameters[t]["def"] for t in existing_teams if t in self.model_parameters]
+        # Calculate medians
+        median_att = float(np.median(att_values))
+        median_def = float(np.median(def_values))
+        # Assign to specified team
+        self.model_parameters[team] = {
+            "att" : median_att,
+            "def" : median_def
+        }
 
     # Saves model to a folder self.Model_Name/; includes:
         # Dump file produced directly by smf

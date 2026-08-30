@@ -25,10 +25,11 @@ def train_league_wprm(league : str):
     if isinstance(league, str):
         league = League(league)
     # identify current season teams
-    current_season_standings : Table = standings_data.Retrieve(league, current_season)
-    current_season_teams = current_season_standings.standings["Team"].unique()
+    current_season_results : Games = results_data.Retrieve(league, current_season)
+    current_season_teams = current_season_results.Teams_Involved()
     # retrieve last season's results data
     previous_season_results : Games = results_data.Retrieve(league, Season(current_season.start_year - 1))
+    previous_season_teams = previous_season_results.Teams_Involved()
     # filter for only games involving current_season_teams
     condition = lambda g: (g.home_team in current_season_teams) and (g.away_team in current_season_teams)
     previous_season_results = previous_season_results.Filter(condition)
@@ -37,6 +38,10 @@ def train_league_wprm(league : str):
     print(f"Training {model_name}...")
     model = Weighted_Poi_Reg_Model(model_name)
     model.fit(previous_season_results)
+    # Impute newly promoted (i.e. that weren't present last season)
+    new_teams = current_season_teams - previous_season_teams
+    for team in new_teams:
+        model.impute_team_as_median(team)
     # save model to current directory
     model.save_model_fgm("")
     print(f"Trained and saved {model_name}")
