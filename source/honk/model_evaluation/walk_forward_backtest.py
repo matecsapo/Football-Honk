@@ -13,18 +13,18 @@ from collections import defaultdict
 # parameterized with:
         # model to use
         # set of games to backtest on
-def Walk_Forward_Backtest(self, model : Model, backtest_games : Games[Completed_Game]):
+def Walk_Forward_Backtest(model : Model, backtest_games : Games[Completed_Game]):
     # dictionary storing produced Game_Predictions match-time datetime --> Games[Game_Prediction]
     game_predictions = {}
     # group backtest_games by unique match-times
     game_groups = defaultdict(list)
-    for game in backtest_games.games:
+    for game in backtest_games:
         game_groups[game.date].append(game)
     # walk forward over all groups of games
     for match_time, games in game_groups.items():
         # produce predictions for remaining games
-        remaining_games = [g for g in self.backtest_games.games if g.date >= match_time]
-        remaining_game_predictions = Games[Game_Prediction]()
+        remaining_games = [g for g in backtest_games if g.date >= match_time]
+        remaining_game_predictions = Games[Game_Prediction](None)
         for game in remaining_games:
             prediction = model.Predict_Game(game)
             remaining_game_predictions.Add_Game(prediction)

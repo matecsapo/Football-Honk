@@ -36,7 +36,6 @@ fasteners==0.20
 filelock==3.29.0
 fonttools==4.62.1
 football-goose @ file:///Users/matecsapo/Programming%20Projects/Football-Goose
-football-honk @ file:///Users/matecsapo/Programming%20Projects/Football-Honk
 gevent==26.5.0
 geventhttpclient==2.3.9
 gitdb==4.0.12

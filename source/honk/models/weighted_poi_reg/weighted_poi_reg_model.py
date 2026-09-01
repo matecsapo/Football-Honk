@@ -47,7 +47,7 @@ class Weighted_Poi_Reg_Model(Model):
     # update/refresh model subject to new additional fit_games
     def update(self, additional_fit_games : Games):
         # store the additional fit_games
-        self.fit_games.Add_Games(additional_fit_games)
+        self.fit_games.Add_Games(additional_fit_games.games)
         # refit model
         self.fit_poi_reg_model()    
 
