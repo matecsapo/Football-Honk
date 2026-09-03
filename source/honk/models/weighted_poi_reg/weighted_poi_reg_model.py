@@ -27,8 +27,9 @@ from scipy.stats import poisson, skellam
 @Model.define_model("Stateful Poisson Regression Model")
 class Weighted_Poi_Reg_Model(Model):
     # initialize with hyperparameters + model info
-    def __init__(self, model_name : str = None, weight_decay_halflife_days : int = 180, league : League = None, season : Season = None):
-        self.model_name = model_name
+    def __init__(self, model_name : str, league : League, season : Season, weight_decay_halflife_days : int = 180):
+        super().__init__(model_name)
+        # league + season model targets
         self.league = league
         self.season = season
         # training games to fit the model on

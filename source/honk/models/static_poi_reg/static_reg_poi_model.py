@@ -2,7 +2,7 @@
 from goose.model import Model
 
 # For data manipulation
-from goose.data.goose_data_structures.identifiers import Team
+from goose.data.goose_data_structures.identifiers import Team, League, Season
 from goose.data.goose_data_structures.game_storage import Game, Game_Simulation, Games, Game_Prediction
 import numpy as np
 import pandas as pd
@@ -29,8 +29,11 @@ from scipy.stats import poisson, skellam
 # Training and testing data specified via Set_Train_Data() and Set_Test_Data()
 @Model.define_model("Static Poisson Regression Model")
 class Static_Poi_Reg_Model(Model):
-    def __init__(self, model_name):
-        self.model_name = model_name
+    def __init__(self, model_name : str, league : League, season : Season):
+        super().__init__(model_name)
+        # league + season model targets
+        self.league = league
+        self.season = season
         self.Data : Games = None # Games object
         self.Processed_Data = None # Regular pd dataframe
         self.Train_Data = None # Regular pd dataframe
