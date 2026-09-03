@@ -1,5 +1,5 @@
 {
     "Model Type": "Weighted_Poi_Reg_Model",
-    "Timestamp Trained": "2026-09-03T11:15:24.850056",
-    "Model Root Save Path": "/Users/matecsapo/Programming Projects/Football-Honk/source/honk/live/models/ESP-La Liga_wprm"
+    "Timestamp Trained": "2026-09-03T17:44:00.191655",
+    "Model Root Save Path": "/home/runner/work/Football-Honk/Football-Honk/source/honk/live/models/ESP-La Liga_wprm"
 }
