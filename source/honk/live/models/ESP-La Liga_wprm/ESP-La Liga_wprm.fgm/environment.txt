@@ -78,7 +78,7 @@ pytest==9.1.1
 pytest-html==4.0.2
 pytest-metadata==3.1.1
 pytest-ordering==0.6
-pytest-rerunfailures==16.6
+pytest-rerunfailures==16.6.1
 pytest-xdist==3.8.0
 python-dateutil==2.9.0.post0
 python-multipart==0.0.32
@@ -94,7 +94,7 @@ sbvirtualdisplay==1.4.0
 scikit-learn==1.9.0
 scipy==1.18.1
 selenium==4.48.0
-seleniumbase==4.53.6
+seleniumbase==4.53.7
 setuptools==84.0.0
 shellingham==1.5.4
 six==1.17.0
