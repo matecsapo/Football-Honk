@@ -94,7 +94,7 @@ sbvirtualdisplay==1.4.0
 scikit-learn==1.9.1
 scipy==1.18.1
 selenium==4.49.0
-seleniumbase==4.54.3
+seleniumbase==4.54.5
 setuptools==84.0.0
 shellingham==1.5.4
 six==1.17.0
@@ -118,7 +118,7 @@ typing-inspection==0.4.4
 typing_extensions==4.16.0
 Unidecode==1.4.0
 urllib3==2.7.0
-uvicorn==0.52.4
+uvicorn==0.53.0
 watchdog==6.0.0
 webencodings==0.6.1
 websocket-client==1.9.2
