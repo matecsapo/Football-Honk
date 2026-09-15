@@ -1,4 +1,4 @@
-altair==6.2.2
+altair==6.3.0
 annotated-doc==0.0.5
 annotated-types==0.8.0
 anyio==4.15.1
@@ -94,7 +94,7 @@ sbvirtualdisplay==1.4.0
 scikit-learn==1.9.1
 scipy==1.18.1
 selenium==4.49.0
-seleniumbase==4.54.5
+seleniumbase==4.54.6
 setuptools==84.0.0
 shellingham==1.5.4
 six==1.17.0
