@@ -69,7 +69,7 @@ Pygments==2.21.0
 PyMsgBox==2.0.1
 pynose==1.5.5
 PyOTP==2.10.0
-pyparsing==3.3.2
+pyparsing==3.3.3
 pyperclip==1.11.0
 PyRect==0.2.0
 PyScreeze==1.0.1
