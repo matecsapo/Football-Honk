@@ -55,7 +55,7 @@ parse_type==0.6.6
 patsy==1.0.3
 pdbp==1.8.3
 pillow==12.3.0
-platformdirs==4.11.12
+platformdirs==4.11.13
 pluggy==1.6.0
 protobuf==7.36.2
 psutil==7.2.2
@@ -118,7 +118,7 @@ typing-inspection==0.4.4
 typing_extensions==4.16.0
 Unidecode==1.4.0
 urllib3==2.8.0
-uvicorn==0.53.0
+uvicorn==0.54.0
 watchdog==6.0.0
 webencodings==0.6.1
 websocket-client==1.9.2
