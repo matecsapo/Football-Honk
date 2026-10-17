@@ -54,7 +54,7 @@ parse_type==0.6.6
 patsy==1.0.3
 pdbp==1.8.3
 pillow==12.3.0
-pluggy==1.6.0
+pluggy==1.7.0
 protobuf==7.36.2
 psutil==7.2.2
 pyarrow==26.0.0
@@ -92,7 +92,7 @@ sbvirtualdisplay==1.4.0
 scikit-learn==1.9.1
 scipy==1.18.1
 selenium==4.51.0
-seleniumbase==4.56.1
+seleniumbase==4.56.2
 setuptools==84.0.0
 shellingham==1.5.4
 six==1.17.0
