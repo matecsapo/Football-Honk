@@ -92,7 +92,7 @@ sbvirtualdisplay==1.4.0
 scikit-learn==1.9.1
 scipy==1.18.1
 selenium==4.51.0
-seleniumbase==4.56.3
+seleniumbase==4.56.4
 setuptools==84.2.1
 shellingham==1.5.4
 six==1.17.0
